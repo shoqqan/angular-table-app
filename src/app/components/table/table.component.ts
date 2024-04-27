@@ -1,7 +1,7 @@
 import {Component, OnInit} from '@angular/core';
 import {NgForOf, NgIf, NgTemplateOutlet} from "@angular/common";
-import {MatFormField, MatLabel} from "@angular/material/form-field";
-import {MatInput} from "@angular/material/input";
+import {MatFormField, MatFormFieldModule, MatLabel} from "@angular/material/form-field";
+import {MatInput, MatInputModule} from "@angular/material/input";
 import {
   MatCell,
   MatCellDef,
@@ -17,7 +17,8 @@ import {
   MatTableDataSource
 } from "@angular/material/table";
 import {IDataElement} from "../../interfaces/data-source";
-import {FormControl, ReactiveFormsModule} from "@angular/forms";
+import {FormControl, FormsModule, ReactiveFormsModule} from "@angular/forms";
+import {MatCheckbox} from "@angular/material/checkbox";
 
 
 const data: IDataElement[] = [
@@ -69,68 +70,74 @@ const data: IDataElement[] = [
     MatHeaderCellDef,
     MatCellDef,
     MatLabel,
-    ReactiveFormsModule
+    ReactiveFormsModule,
+    MatCheckbox,
+    FormsModule,
+    MatInputModule, MatFormFieldModule
   ],
   templateUrl: './table.component.html',
   styleUrl: './table.component.scss'
 })
 export class TableComponent implements OnInit {
-  dataSource = new MatTableDataSource()
+  dataSource = new MatTableDataSource(data)
   displayedColumns = ["brand", "id", "name", "cost", "availability"]
   brandFilter = new FormControl('')
   idFilter = new FormControl('')
   nameFilter = new FormControl('')
   costFilter = new FormControl('')
-  availabilityFilter = new FormControl('')
-  filterValues = {
+  availabilityFilter: boolean
+  filterValues: any = {
     brand: "",
     id: "",
     name: "",
     cost: "",
-    availability: "",
+    availability: false,
   }
 
   constructor() {
-    this.dataSource.data = data
-    this.dataSource.filterPredicate = this.createFilter()
-  }
-
-  ngOnInit(): void {
-    this.nameFilter.valueChanges.subscribe(name => {
-      this.filterValues.name = name ? name.toLowerCase() : '';
-      this.applyFilters();
-    });
-    this.idFilter.valueChanges.subscribe(id => {
-      this.filterValues.id = id ? id.toLowerCase() : '';
-      this.applyFilters();
-    });
-    this.brandFilter.valueChanges.subscribe(brand => {
-      this.filterValues.brand = brand ? brand.toLowerCase() : '';
-      this.applyFilters();
-    });
-    this.costFilter.valueChanges.subscribe(cost => {
-      this.filterValues.cost = cost ? cost.toString().toLowerCase() : '';
-      this.applyFilters();
-    });
-    this.availabilityFilter.valueChanges.subscribe(availability => {
-      this.filterValues.availability = availability !== null ? availability : '';
-      this.applyFilters();
-    });
-  }
-
-  applyFilters() {
-    this.dataSource.filter = JSON.stringify(this.filterValues);
-  }
-
-  createFilter(): (data: any, filter: string) => boolean {
-    return function (data, filter): boolean {
+    this.dataSource.filterPredicate = ((data: any, filter: string): boolean => {
       const searchTerms = JSON.parse(filter);
       return data.name.toLowerCase().includes(searchTerms.name)
         && data.id.toLowerCase().includes(searchTerms.id)
         && data.brand.toLowerCase().includes(searchTerms.brand)
         && data.cost.toString().toLowerCase().includes(searchTerms.cost)
-        && (searchTerms.availability === '' || data.availability === searchTerms.availability);
-    };
+        && data.availability.toString().includes(searchTerms.availability)
+    })
   }
+
+  ngOnInit(): void {
+    this.nameFilter.valueChanges.subscribe(name => {
+      this.applyFilters("name", name ? name.toString().toString() : '');
+    });
+    this.idFilter.valueChanges.subscribe(id => {
+      this.applyFilters("id", id ? id.toString().toString() : '');
+
+    });
+    this.brandFilter.valueChanges.subscribe(brand => {
+      this.applyFilters("brand", brand ? brand.toString().toString() : '');
+
+    });
+    this.costFilter.valueChanges.subscribe(cost => {
+      this.applyFilters("cost", cost ? cost.toString().toString() : '');
+    });
+
+
+  }
+
+  applyFilters(column: string, filterValue: string) {
+    this.filterValues[column] = filterValue
+    this.dataSource.filter = JSON.stringify(this.filterValues);
+  }
+
+  // createFilter(): (data: IDataElement, filter: string) => boolean {
+  //   return function (data, filter): boolean {
+  //     const searchTerms = JSON.parse(filter);
+  //     return data.name.toLowerCase().includes(searchTerms.name)
+  //       && data.id.toLowerCase().includes(searchTerms.id)
+  //       && data.brand.toLowerCase().includes(searchTerms.brand)
+  //       && data.cost.toString().toLowerCase().includes(searchTerms.cost)
+  //       && (this.availabilityFilter && data.availability.toString() === "true")
+  //   };
+
 
 }

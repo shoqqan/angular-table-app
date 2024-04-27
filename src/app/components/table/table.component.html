@@ -42,10 +42,9 @@
   <ng-container matColumnDef="availability">
     <th class="header" mat-header-cell *matHeaderCellDef>
       В наличии
-      <mat-form-field class="filter">
         <mat-label>Search</mat-label>
-        <input matInput [formControl]="costFilter">
-      </mat-form-field>
+        <mat-checkbox [(ngModel)]="availabilityFilter"
+                      (change)="applyFilters('availability',availabilityFilter?'true':'')"/>
     </th>
     <td mat-cell *matCellDef="let element">{{element.availability}}</td>
   </ng-container>
