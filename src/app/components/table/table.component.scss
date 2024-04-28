@@ -1,3 +1,32 @@
-table, th, td {
-  border: 1px solid black;
+p {
+  font-family: Lato, sans-serif;
+}
+
+table {
+  width: 100%;
+}
+
+.header {
+  padding: 5px;
+}
+
+.filterOverlay {
+  display: flex;
+  flex-direction: column;
+  background-color: white;
+  padding: 0.5rem;
+  border: 1px solid gray;
+  border-radius: 4%;
+}
+
+.filter {
+  display: flex;
+  flex-direction: column;
+}
+
+.button-container {
+  width: 100%;
+  display: flex;
+  justify-content: flex-end;
+  gap: 1rem;
 }

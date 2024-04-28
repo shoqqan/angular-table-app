@@ -1,4 +1,4 @@
-import {Component, OnInit} from '@angular/core';
+import {Component} from '@angular/core';
 import {NgForOf, NgIf, NgTemplateOutlet} from "@angular/common";
 import {MatFormField, MatFormFieldModule, MatLabel} from "@angular/material/form-field";
 import {MatInput, MatInputModule} from "@angular/material/input";
@@ -19,6 +19,8 @@ import {
 import {IDataElement} from "../../interfaces/data-source";
 import {FormControl, FormsModule, ReactiveFormsModule} from "@angular/forms";
 import {MatCheckbox} from "@angular/material/checkbox";
+import {CdkConnectedOverlay, CdkOverlayOrigin} from "@angular/cdk/overlay";
+import {MatButton} from "@angular/material/button";
 
 
 const data: IDataElement[] = [
@@ -73,12 +75,12 @@ const data: IDataElement[] = [
     ReactiveFormsModule,
     MatCheckbox,
     FormsModule,
-    MatInputModule, MatFormFieldModule
+    MatInputModule, MatFormFieldModule, CdkOverlayOrigin, CdkConnectedOverlay, MatButton
   ],
   templateUrl: './table.component.html',
   styleUrl: './table.component.scss'
 })
-export class TableComponent implements OnInit {
+export class TableComponent {
   dataSource = new MatTableDataSource(data)
   displayedColumns = ["brand", "id", "name", "cost", "availability"]
   brandFilter = new FormControl('')
@@ -91,8 +93,13 @@ export class TableComponent implements OnInit {
     id: "",
     name: "",
     cost: "",
-    availability: false,
+    availability: "",
   }
+  protected brandFilterOpen = false
+  protected idFilterOpen = false
+  protected nameFilterOpen = false
+  protected costFilterOpen = false
+  protected availabilityFilterOpen = false
 
   constructor() {
     this.dataSource.filterPredicate = ((data: any, filter: string): boolean => {
@@ -105,39 +112,13 @@ export class TableComponent implements OnInit {
     })
   }
 
-  ngOnInit(): void {
-    this.nameFilter.valueChanges.subscribe(name => {
-      this.applyFilters("name", name ? name.toString().toString() : '');
-    });
-    this.idFilter.valueChanges.subscribe(id => {
-      this.applyFilters("id", id ? id.toString().toString() : '');
 
-    });
-    this.brandFilter.valueChanges.subscribe(brand => {
-      this.applyFilters("brand", brand ? brand.toString().toString() : '');
-
-    });
-    this.costFilter.valueChanges.subscribe(cost => {
-      this.applyFilters("cost", cost ? cost.toString().toString() : '');
-    });
-
-
-  }
-
-  applyFilters(column: string, filterValue: string) {
+  applyFilters(column: string, filterValue: string | null) {
+    console.log(filterValue)
     this.filterValues[column] = filterValue
     this.dataSource.filter = JSON.stringify(this.filterValues);
   }
 
-  // createFilter(): (data: IDataElement, filter: string) => boolean {
-  //   return function (data, filter): boolean {
-  //     const searchTerms = JSON.parse(filter);
-  //     return data.name.toLowerCase().includes(searchTerms.name)
-  //       && data.id.toLowerCase().includes(searchTerms.id)
-  //       && data.brand.toLowerCase().includes(searchTerms.brand)
-  //       && data.cost.toString().toLowerCase().includes(searchTerms.cost)
-  //       && (this.availabilityFilter && data.availability.toString() === "true")
-  //   };
 
-
+  protected readonly name = name;
 }

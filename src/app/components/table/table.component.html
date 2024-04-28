@@ -1,50 +1,116 @@
 <table mat-table [dataSource]="dataSource">
   <ng-container matColumnDef="brand">
-    <th class="header" mat-header-cell *matHeaderCellDef>
+    <th class="header" mat-header-cell cdkOverlayOrigin #trigger="cdkOverlayOrigin" [class.open]="brandFilterOpen"
+        (click)="brandFilterOpen = !brandFilterOpen" *matHeaderCellDef>
       Бренд
-      <mat-form-field class="filter">
-        <mat-label>Search</mat-label>
-        <input matInput [formControl]="brandFilter">
-      </mat-form-field>
+      <ng-template cdkConnectedOverlay [cdkConnectedOverlayOrigin]="trigger"
+                   [cdkConnectedOverlayOpen]="brandFilterOpen" (overlayOutsideClick)="brandFilterOpen=false">
+        <div class="filterOverlay">
+          <mat-form-field class="filter">
+            <input matInput placeholder="Фильтр" [formControl]="brandFilter">
+          </mat-form-field>
+          <div class="button-container">
+            <button mat-flat-button color="accent"
+                    (click)="applyFilters('brand',brandFilter.getRawValue()!.toLowerCase())">ОК
+            </button>
+            <button mat-flat-button color="warn" (click)="applyFilters('brand','')">Сбросить</button>
+          </div>
+        </div>
+
+      </ng-template>
     </th>
     <td mat-cell *matCellDef="let element">{{element.brand}}</td>
   </ng-container>
   <ng-container matColumnDef="id">
-    <th class="header" mat-header-cell *matHeaderCellDef>
+    <th class="header" mat-header-cell *matHeaderCellDef cdkOverlayOrigin #trigger="cdkOverlayOrigin"
+        [class.open]="idFilterOpen"
+        (click)="idFilterOpen = !idFilterOpen">
       Артикул
-      <mat-form-field class="filter">
-        <mat-label>Search</mat-label>
-        <input matInput [formControl]="idFilter">
-      </mat-form-field>
+      <ng-template cdkConnectedOverlay [cdkConnectedOverlayOrigin]="trigger"
+                   [cdkConnectedOverlayOpen]="idFilterOpen" (overlayOutsideClick)="idFilterOpen=false">
+        <div class="filterOverlay">
+          <mat-form-field class="filter">
+            <input matInput placeholder="Фильтр" [formControl]="idFilter">
+          </mat-form-field>
+          <div class="button-container">
+            <button mat-flat-button color="accent" (click)="applyFilters('id',idFilter.getRawValue())">ОК</button>
+            <button mat-flat-button color="warn" (click)="applyFilters('id','')">Сбросить</button>
+          </div>
+        </div>
+
+      </ng-template>
     </th>
     <td mat-cell *matCellDef="let element">{{element.id}}</td>
   </ng-container>
   <ng-container matColumnDef="name">
-    <th class="header" mat-header-cell *matHeaderCellDef>
+    <th class="header" mat-header-cell *matHeaderCellDef cdkOverlayOrigin #trigger="cdkOverlayOrigin"
+        [class.open]="nameFilterOpen"
+        (click)="nameFilterOpen = !nameFilterOpen">
       Наименование товара
-      <mat-form-field class="filter">
-        <mat-label>Search</mat-label>
-        <input matInput [formControl]="nameFilter">
-      </mat-form-field>
+      <ng-template cdkConnectedOverlay [cdkConnectedOverlayOrigin]="trigger"
+                   [cdkConnectedOverlayOpen]="nameFilterOpen" (overlayOutsideClick)="nameFilterOpen=false">
+        <div class="filterOverlay">
+          <mat-form-field class="filter">
+            <input matInput placeholder="Фильтр" [formControl]="nameFilter">
+          </mat-form-field>
+          <div class="button-container">
+            <button mat-flat-button color="accent"
+                    (click)="applyFilters('name',brandFilter.getRawValue()!.toLowerCase())">ОК
+            </button>
+            <button mat-flat-button color="warn" (click)="applyFilters('name','')">Сбросить</button>
+          </div>
+        </div>
+
+      </ng-template>
     </th>
     <td mat-cell *matCellDef="let element">{{element.name}}</td>
   </ng-container>
   <ng-container matColumnDef="cost">
-    <th class="header" mat-header-cell *matHeaderCellDef>
+    <th class="header" mat-header-cell *matHeaderCellDef cdkOverlayOrigin #trigger="cdkOverlayOrigin"
+        [class.open]="costFilterOpen"
+        (click)="costFilterOpen = !costFilterOpen">
       Цена
-      <mat-form-field class="filter">
-        <mat-label>Search</mat-label>
-        <input matInput [formControl]="costFilter">
-      </mat-form-field>
+      <ng-template cdkConnectedOverlay [cdkConnectedOverlayOrigin]="trigger"
+                   [cdkConnectedOverlayOpen]="costFilterOpen" (overlayOutsideClick)="costFilterOpen=false">
+        <div class="filterOverlay">
+          <mat-form-field class="filter">
+            <input matInput placeholder="Фильтр" [formControl]="costFilter">
+          </mat-form-field>
+          <div class="button-container">
+            <button mat-flat-button color="accent"
+                    (click)="applyFilters('cost',costFilter.getRawValue()?.length?costFilter.getRawValue():'')">ОК
+            </button>
+            <button mat-flat-button color="warn" (click)="applyFilters('cost','')">Сбросить</button>
+          </div>
+        </div>
+
+      </ng-template>
     </th>
     <td mat-cell *matCellDef="let element">{{element.cost}}</td>
   </ng-container>
   <ng-container matColumnDef="availability">
-    <th class="header" mat-header-cell *matHeaderCellDef>
+    <th class="header" mat-header-cell *matHeaderCellDef cdkOverlayOrigin #trigger="cdkOverlayOrigin"
+        [class.open]="availabilityFilterOpen"
+        (click)="availabilityFilterOpen = !availabilityFilterOpen">
       В наличии
-        <mat-label>Search</mat-label>
-        <mat-checkbox [(ngModel)]="availabilityFilter"
-                      (change)="applyFilters('availability',availabilityFilter?'true':'')"/>
+
+      <ng-template cdkConnectedOverlay [cdkConnectedOverlayOrigin]="trigger"
+                   [cdkConnectedOverlayOpen]="availabilityFilterOpen"
+                   (overlayOutsideClick)="availabilityFilterOpen=false">
+        <div class="filterOverlay">
+
+          <div class="filter">
+            <mat-checkbox [(ngModel)]="availabilityFilter"/>
+            <mat-label>В наличии</mat-label>
+          </div>
+          <div class="button-container">
+            <button mat-flat-button color="accent" (click)="applyFilters('availability',availabilityFilter?'true':'')">
+              ОК
+            </button>
+          </div>
+        </div>
+      </ng-template>
+
     </th>
     <td mat-cell *matCellDef="let element">{{element.availability}}</td>
   </ng-container>
