@@ -1,5 +1,26 @@
+.app {
+  width: 100vw;
+  height: 100vh;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+}
+
+.head{
+  width: 100%;
+}
+h1{
+  margin-left: 1rem;
+}
+header{
+  width: 100%;
+  padding-left: 1rem;
+  padding-top: 1rem;
+}
+
 .table {
-  width: 50%;
-  height: 500px;
+  width: 97%;
+  height: 100%;
   overflow: scroll;
 }

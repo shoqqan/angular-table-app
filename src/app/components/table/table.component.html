@@ -1,8 +1,14 @@
 <table mat-table [dataSource]="dataSource">
-  <ng-container matColumnDef="brand">
+  <ng-container matColumnDef="brand" sticky>
     <th class="header" mat-header-cell cdkOverlayOrigin #trigger="cdkOverlayOrigin" [class.open]="brandFilterOpen"
         (click)="brandFilterOpen = !brandFilterOpen" *matHeaderCellDef>
-      Бренд
+      <div class="table-head">
+        <p>Бренд</p>
+        <svg xmlns="http://www.w3.org/2000/svg" height="24" viewBox="0 -960 960 960" width="24">
+          <path
+            d="M784-120 532-372q-30 24-69 38t-83 14q-109 0-184.5-75.5T120-580q0-109 75.5-184.5T380-840q109 0 184.5 75.5T640-580q0 44-14 83t-38 69l252 252-56 56ZM380-400q75 0 127.5-52.5T560-580q0-75-52.5-127.5T380-760q-75 0-127.5 52.5T200-580q0 75 52.5 127.5T380-400Z"/>
+        </svg>
+      </div>
       <ng-template cdkConnectedOverlay [cdkConnectedOverlayOrigin]="trigger"
                    [cdkConnectedOverlayOpen]="brandFilterOpen" (overlayOutsideClick)="brandFilterOpen=false">
         <div class="filterOverlay">
@@ -10,7 +16,7 @@
             <input matInput placeholder="Фильтр" [formControl]="brandFilter">
           </mat-form-field>
           <div class="button-container">
-            <button mat-flat-button color="accent"
+            <button mat-flat-button color="primary"
                     (click)="applyFilters('brand',brandFilter.getRawValue()!.toLowerCase())">ОК
             </button>
             <button mat-flat-button color="warn" (click)="applyFilters('brand','')">Сбросить</button>
@@ -25,7 +31,13 @@
     <th class="header" mat-header-cell *matHeaderCellDef cdkOverlayOrigin #trigger="cdkOverlayOrigin"
         [class.open]="idFilterOpen"
         (click)="idFilterOpen = !idFilterOpen">
-      Артикул
+      <div class="table-head">
+        <p>Артикул</p>
+        <svg xmlns="http://www.w3.org/2000/svg" height="24" viewBox="0 -960 960 960" width="24">
+          <path
+            d="M784-120 532-372q-30 24-69 38t-83 14q-109 0-184.5-75.5T120-580q0-109 75.5-184.5T380-840q109 0 184.5 75.5T640-580q0 44-14 83t-38 69l252 252-56 56ZM380-400q75 0 127.5-52.5T560-580q0-75-52.5-127.5T380-760q-75 0-127.5 52.5T200-580q0 75 52.5 127.5T380-400Z"/>
+        </svg>
+      </div>
       <ng-template cdkConnectedOverlay [cdkConnectedOverlayOrigin]="trigger"
                    [cdkConnectedOverlayOpen]="idFilterOpen" (overlayOutsideClick)="idFilterOpen=false">
         <div class="filterOverlay">
@@ -33,7 +45,7 @@
             <input matInput placeholder="Фильтр" [formControl]="idFilter">
           </mat-form-field>
           <div class="button-container">
-            <button mat-flat-button color="accent" (click)="applyFilters('id',idFilter.getRawValue())">ОК</button>
+            <button mat-flat-button color="primary" (click)="applyFilters('id',idFilter.getRawValue())">ОК</button>
             <button mat-flat-button color="warn" (click)="applyFilters('id','')">Сбросить</button>
           </div>
         </div>
@@ -46,7 +58,13 @@
     <th class="header" mat-header-cell *matHeaderCellDef cdkOverlayOrigin #trigger="cdkOverlayOrigin"
         [class.open]="nameFilterOpen"
         (click)="nameFilterOpen = !nameFilterOpen">
-      Наименование товара
+      <div class="table-head">
+        <p>Наименование товара</p>
+        <svg xmlns="http://www.w3.org/2000/svg" height="24" viewBox="0 -960 960 960" width="24">
+          <path
+            d="M784-120 532-372q-30 24-69 38t-83 14q-109 0-184.5-75.5T120-580q0-109 75.5-184.5T380-840q109 0 184.5 75.5T640-580q0 44-14 83t-38 69l252 252-56 56ZM380-400q75 0 127.5-52.5T560-580q0-75-52.5-127.5T380-760q-75 0-127.5 52.5T200-580q0 75 52.5 127.5T380-400Z"/>
+        </svg>
+      </div>
       <ng-template cdkConnectedOverlay [cdkConnectedOverlayOrigin]="trigger"
                    [cdkConnectedOverlayOpen]="nameFilterOpen" (overlayOutsideClick)="nameFilterOpen=false">
         <div class="filterOverlay">
@@ -54,7 +72,7 @@
             <input matInput placeholder="Фильтр" [formControl]="nameFilter">
           </mat-form-field>
           <div class="button-container">
-            <button mat-flat-button color="accent"
+            <button mat-flat-button color="primary"
                     (click)="applyFilters('name',brandFilter.getRawValue()!.toLowerCase())">ОК
             </button>
             <button mat-flat-button color="warn" (click)="applyFilters('name','')">Сбросить</button>
@@ -69,7 +87,13 @@
     <th class="header" mat-header-cell *matHeaderCellDef cdkOverlayOrigin #trigger="cdkOverlayOrigin"
         [class.open]="costFilterOpen"
         (click)="costFilterOpen = !costFilterOpen">
-      Цена
+      <div class="table-head">
+        <p>Цена</p>
+        <svg xmlns="http://www.w3.org/2000/svg" height="24" viewBox="0 -960 960 960" width="24">
+          <path
+            d="M784-120 532-372q-30 24-69 38t-83 14q-109 0-184.5-75.5T120-580q0-109 75.5-184.5T380-840q109 0 184.5 75.5T640-580q0 44-14 83t-38 69l252 252-56 56ZM380-400q75 0 127.5-52.5T560-580q0-75-52.5-127.5T380-760q-75 0-127.5 52.5T200-580q0 75 52.5 127.5T380-400Z"/>
+        </svg>
+      </div>
       <ng-template cdkConnectedOverlay [cdkConnectedOverlayOrigin]="trigger"
                    [cdkConnectedOverlayOpen]="costFilterOpen" (overlayOutsideClick)="costFilterOpen=false">
         <div class="filterOverlay">
@@ -77,7 +101,7 @@
             <input matInput placeholder="Фильтр" [formControl]="costFilter">
           </mat-form-field>
           <div class="button-container">
-            <button mat-flat-button color="accent"
+            <button mat-flat-button color="primary"
                     (click)="applyFilters('cost',costFilter.getRawValue()?.length?costFilter.getRawValue():'')">ОК
             </button>
             <button mat-flat-button color="warn" (click)="applyFilters('cost','')">Сбросить</button>
@@ -92,19 +116,23 @@
     <th class="header" mat-header-cell *matHeaderCellDef cdkOverlayOrigin #trigger="cdkOverlayOrigin"
         [class.open]="availabilityFilterOpen"
         (click)="availabilityFilterOpen = !availabilityFilterOpen">
-      В наличии
+      <div class="table-head">
+        <p>В наличии</p>
+
+        <svg xmlns="http://www.w3.org/2000/svg" height="24" viewBox="0 -960 960 960" width="24"><path d="m280-400 200-200 200 200H280Z"/></svg>
+      </div>
 
       <ng-template cdkConnectedOverlay [cdkConnectedOverlayOrigin]="trigger"
                    [cdkConnectedOverlayOpen]="availabilityFilterOpen"
                    (overlayOutsideClick)="availabilityFilterOpen=false">
         <div class="filterOverlay">
 
-          <div class="filter">
+          <div class="filter filter-checkbox">
             <mat-checkbox [(ngModel)]="availabilityFilter"/>
             <mat-label>В наличии</mat-label>
           </div>
           <div class="button-container">
-            <button mat-flat-button color="accent" (click)="applyFilters('availability',availabilityFilter?'true':'')">
+            <button mat-flat-button color="primary" (click)="applyFilters('availability',availabilityFilter?'true':'')">
               ОК
             </button>
           </div>
@@ -112,9 +140,10 @@
       </ng-template>
 
     </th>
-    <td mat-cell *matCellDef="let element">{{element.availability}}</td>
+    <td mat-cell *matCellDef="let element"
+        [ngClass]="{'active':element.availability}">{{element.availability ? 'В наличии' : 'Нет в наличии'}}</td>
   </ng-container>
-  <tr mat-header-row *matHeaderRowDef="displayedColumns"></tr>
+  <tr mat-header-row *matHeaderRowDef="displayedColumns; sticky:true" class="dark-gray-background"></tr>
   <tr mat-row
-      *matRowDef="let element; columns: displayedColumns"></tr>
+      *matRowDef="let element; columns: displayedColumns; let i = index" [ngClass]="{'gray-background':i%2===1}"></tr>
 </table>

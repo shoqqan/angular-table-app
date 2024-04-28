@@ -1,5 +1,5 @@
 import {Component} from '@angular/core';
-import {NgForOf, NgIf, NgTemplateOutlet} from "@angular/common";
+import {NgClass, NgForOf, NgIf, NgTemplateOutlet} from "@angular/common";
 import {MatFormField, MatFormFieldModule, MatLabel} from "@angular/material/form-field";
 import {MatInput, MatInputModule} from "@angular/material/input";
 import {
@@ -75,7 +75,7 @@ const data: IDataElement[] = [
     ReactiveFormsModule,
     MatCheckbox,
     FormsModule,
-    MatInputModule, MatFormFieldModule, CdkOverlayOrigin, CdkConnectedOverlay, MatButton
+    MatInputModule, MatFormFieldModule, CdkOverlayOrigin, CdkConnectedOverlay, MatButton, NgClass
   ],
   templateUrl: './table.component.html',
   styleUrl: './table.component.scss'
