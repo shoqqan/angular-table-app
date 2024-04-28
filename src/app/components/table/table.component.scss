@@ -64,8 +64,11 @@ table {
   color: #00A0E3
 }
 
-
+th{
+  transition: all 0.2s ease-in-out;
+}
 th:hover {
   cursor: pointer;
+  color: black;
 }
 
