@@ -19,7 +19,7 @@
             <button mat-flat-button color="primary"
                     (click)="applyFilters('brand',brandFilter.getRawValue()!.toLowerCase())">ОК
             </button>
-            <button mat-flat-button color="warn" (click)="applyFilters('brand','')">Сбросить</button>
+            <button mat-stroked-button color="warn" (click)="applyFilters('brand','')">Сбросить</button>
           </div>
         </div>
 
@@ -46,7 +46,7 @@
           </mat-form-field>
           <div class="button-container">
             <button mat-flat-button color="primary" (click)="applyFilters('id',idFilter.getRawValue())">ОК</button>
-            <button mat-flat-button color="warn" (click)="applyFilters('id','')">Сбросить</button>
+            <button mat-stroked-button color="warn" (click)="applyFilters('id','')">Сбросить</button>
           </div>
         </div>
 
@@ -75,7 +75,7 @@
             <button mat-flat-button color="primary"
                     (click)="applyFilters('name',brandFilter.getRawValue()!.toLowerCase())">ОК
             </button>
-            <button mat-flat-button color="warn" (click)="applyFilters('name','')">Сбросить</button>
+            <button mat-stroked-button color="warn" (click)="applyFilters('name','')">Сбросить</button>
           </div>
         </div>
 
@@ -104,7 +104,7 @@
             <button mat-flat-button color="primary"
                     (click)="applyFilters('cost',costFilter.getRawValue()?.length?costFilter.getRawValue():'')">ОК
             </button>
-            <button mat-flat-button color="warn" (click)="applyFilters('cost','')">Сбросить</button>
+            <button mat-stroked-button color="warn" (click)="applyFilters('cost','')">Сбросить</button>
           </div>
         </div>
 
@@ -128,11 +128,11 @@
         <div class="filterOverlay">
 
           <div class="filter filter-checkbox">
-            <mat-checkbox [(ngModel)]="availabilityFilter"/>
+            <mat-slide-toggle [(ngModel)]="availabilityFilter"/>
             <mat-label>В наличии</mat-label>
           </div>
           <div class="button-container">
-            <button mat-flat-button color="primary" (click)="applyFilters('availability',availabilityFilter?'true':'')">
+            <button mat-raised-button color="primary" (click)="applyFilters('availability',availabilityFilter?'true':'')">
               ОК
             </button>
           </div>

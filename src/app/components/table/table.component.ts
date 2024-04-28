@@ -21,6 +21,7 @@ import {FormControl, FormsModule, ReactiveFormsModule} from "@angular/forms";
 import {MatCheckbox} from "@angular/material/checkbox";
 import {CdkConnectedOverlay, CdkOverlayOrigin} from "@angular/cdk/overlay";
 import {MatButton} from "@angular/material/button";
+import {MatSlideToggle} from "@angular/material/slide-toggle";
 
 
 const data: IDataElement[] = [
@@ -75,7 +76,7 @@ const data: IDataElement[] = [
     ReactiveFormsModule,
     MatCheckbox,
     FormsModule,
-    MatInputModule, MatFormFieldModule, CdkOverlayOrigin, CdkConnectedOverlay, MatButton, NgClass
+    MatInputModule, MatFormFieldModule, CdkOverlayOrigin, CdkConnectedOverlay, MatButton, NgClass, MatSlideToggle
   ],
   templateUrl: './table.component.html',
   styleUrl: './table.component.scss'
@@ -120,5 +121,4 @@ export class TableComponent {
   }
 
 
-  protected readonly name = name;
 }
