@@ -73,7 +73,7 @@
           </mat-form-field>
           <div class="button-container">
             <button mat-flat-button color="primary"
-                    (click)="applyFilters('name',brandFilter.getRawValue()!.toLowerCase())">ОК
+                    (click)="applyFilters('name',nameFilter.getRawValue()!.toLowerCase())">ОК
             </button>
             <button mat-stroked-button color="warn" (click)="applyFilters('name','')">Сбросить</button>
           </div>
@@ -119,7 +119,9 @@
       <div class="table-head">
         <p>В наличии</p>
 
-        <svg xmlns="http://www.w3.org/2000/svg" height="24" viewBox="0 -960 960 960" width="24" fill="#637381"><path d="m280-400 200-200 200 200H280Z"/></svg>
+        <svg xmlns="http://www.w3.org/2000/svg" height="24" viewBox="0 -960 960 960" width="24" fill="#637381">
+          <path d="m280-400 200-200 200 200H280Z"/>
+        </svg>
       </div>
 
       <ng-template cdkConnectedOverlay [cdkConnectedOverlayOrigin]="trigger"
@@ -132,7 +134,8 @@
             <mat-label>В наличии</mat-label>
           </div>
           <div class="button-container">
-            <button mat-raised-button color="primary" (click)="applyFilters('availability',availabilityFilter?'true':'')">
+            <button mat-raised-button color="primary"
+                    (click)="applyFilters('availability',availabilityFilter?'true':'')">
               ОК
             </button>
           </div>
